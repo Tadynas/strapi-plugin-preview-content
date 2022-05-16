@@ -86,7 +86,11 @@ module.exports = {
             var model;
             return __generator(this, function (_e) {
                 switch (_e.label) {
-                    case 0: return [4 /*yield*/, ((_a = global.strapi.query(contentType)) === null || _a === void 0 ? void 0 : _a.model)];
+                    case 0:
+                        if (contentType === 'user') {
+                            throw new PreviewError(400, "Wrong contentType");
+                        }
+                        return [4 /*yield*/, ((_a = global.strapi.query(contentType)) === null || _a === void 0 ? void 0 : _a.model)];
                     case 1:
                         model = _e.sent();
                         if (model) {

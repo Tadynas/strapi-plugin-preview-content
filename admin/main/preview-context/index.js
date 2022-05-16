@@ -105,12 +105,14 @@ var PreviewProvider = function (_a) {
         return setWarningPublish(function (prevState) { return !prevState; });
     };
     react_1.useEffect(function () {
-        strapi_helper_plugin_1.request("/preview-content/is-previewable/" + layout.apiID, {
-            method: "GET",
-        }).then(function (_a) {
-            var isPreviewable = _a.isPreviewable;
-            setIsPreviewable(isPreviewable);
-        });
+        if (layout.apiID !== 'user') {
+            strapi_helper_plugin_1.request("/preview-content/is-previewable/" + layout.apiID, {
+                method: "GET",
+            }).then(function (_a) {
+                var isPreviewable = _a.isPreviewable;
+                setIsPreviewable(isPreviewable);
+            });
+        }
     }, [layout.apiID]);
     var didChangeData = react_1.useMemo(function () {
         return (!lodash_1.isEqual(initialData, modifiedData) ||

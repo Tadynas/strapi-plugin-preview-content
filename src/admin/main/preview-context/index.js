@@ -38,11 +38,13 @@ export const PreviewProvider = ({
     setWarningPublish((prevState) => !prevState);
 
   useEffect(() => {
-    request(`/preview-content/is-previewable/${layout.apiID}`, {
-      method: "GET",
-    }).then(({ isPreviewable }) => {
-      setIsPreviewable(isPreviewable);
-    });
+    if(layout.apiID !== "user") {
+      request(`/preview-content/is-previewable/${layout.apiID}`, {
+        method: "GET",
+      }).then(({ isPreviewable }) => {
+        setIsPreviewable(isPreviewable);
+      });
+    }
   }, [layout.apiID]);
 
   const didChangeData = useMemo(() => {
